@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root 
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+	version="2.1"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:parts="urn:jsptagdir:/WEB-INF/tags"
+	>
+	<jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
+	
+	
+	<parts:layout>
+		<jsp:attribute name="content">
+
+			<div id="context">
+				<h2>Formal Context</h2>
+				<parts:context context="${sessionScope.context}" domain="${sessionScope.domain}"/>
+				<a href="/">change context</a>
+			</div>
+			
+
+			<c:if test="${not empty context.expert.question}">
+				<div id="exploration">
+					<h2>Attribute Exploration</h2>
+					<p>
+						The current implication is: 
+						<strong><c:out value="${context.expert.question.premise}"/> &#8658; <c:out value="${context.expert.question.conclusion}"/></strong>.
+					</p>
+					You can either 
+					<form action="/exploration/confirm" method="post" style="display: inline;">
+						<input type="submit" value="accept"/>
+					</form>
+					it or  
+					<form action="/exploration/counterexample" method="post" style="display: inline;">
+						<input type="submit" value="provide a counterexample"/>:
+						<table class="context">
+							<thead>
+								<tr>
+									<td></td>
+									<c:forEach items="${context.attributes}" var="attrib">
+										<td><c:out value="${attrib}"/></td>
+									</c:forEach>
+								</tr>
+							</thead>
+							<tr>						
+								<td class="first"><input type="text" width="15" name="id"/></td>
+								<c:forEach items="${context.attributes}" var="attrib">
+									<td><input type="checkbox" name="attributes" value="${fn:escapeXml(attrib)}"/></td>
+								</c:forEach>
+							</tr>
+						</table>
+					</form>
+						
+					<p>Can you find a find a counterexample within the following web search results?</p>
+				
+					<ol class="queries">
+						<c:forEach var="query" items="${queries}" varStatus="status">
+							<li> 
+								<c:choose>
+									<c:when test="${queryId == status.index}">
+										<strong><c:out value="${query.queryString}"/></strong>
+									</c:when>
+									<c:otherwise>
+										<a href="/exploration/query?queryId=${status.index}"><c:out value="${query.queryString}"/></a>
+									</c:otherwise>
+								</c:choose>
+							</li>
+						</c:forEach>
+					</ol>
+					<form action="/exploration/query" method="post">
+						<input type="text" size="60" value="${fn:escapeXml(queryString)}" name="queryString" />
+						<input type="submit" value="custom search"/>
+					</form>
+					
+					<ol class="results">
+						<c:forEach var="result" items="${results.results}">
+							<li>
+								<a href="${result.url}"><c:out value="${result.title}"/></a>
+								<div class="url"><c:out value="${result.url}"/></div>
+								<c:if test="${not empty result.snippet}">
+									<div class="snippet"><c:out value="${result.snippet}"></c:out></div>
+								</c:if>
+							</li>
+						</c:forEach>
+					</ol>		
+				</div>
+			</c:if>
+				
+				
+			<div id="implications">
+				<h2>Accepted Implications</h2>
+				<ol>
+					<c:forEach items="${context.implications}" var="implication">
+						<li><c:out value="${implication.premise}"/> &#8658; <c:out value="${implication.conclusion}"/></li>
+					</c:forEach>
+				</ol>
+			</div>
+				
+			<div style="margin-top: 1000px;"><!-- keep me --></div>
+				
+		</jsp:attribute>
+	</parts:layout>
+	
+</jsp:root>

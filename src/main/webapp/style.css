@@ -1,0 +1,68 @@
+table.context, .context th, .context td {
+	border: 1px solid #ddd;
+}
+table.context {
+	border-collapse:collapse;
+}
+.context td {
+	text-align: center;
+	padding: .2ex .5ex .2ex .5ex;
+}
+
+.context td.first {
+	text-align: right;
+}
+.title {
+	font-weight: bold;	
+}
+body {
+	margin: 0px;
+	font-family: sans-serif;
+}
+
+.header {
+	margin: 0px;
+	padding: 4px;
+	background: #eee;
+}
+
+h2 {
+	font-size: 14pt;
+	font-weight: bold;
+	border-bottom: 1px solid #eee;	
+}
+
+h3 {
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+div.url {
+	color: green;
+	font-size: 10pt;	
+}
+div.snippet {
+	font-size: 10pt;
+}
+.content {
+	margin: 4px;
+}
+
+.left {
+	float: left; 
+	margin-right: 3em; 
+	margin-bottom: 1em;
+}
+
+.help {
+	padding-left: 5px;
+	font-size: 10pt;
+}
+
+label {
+	float: left;
+	padding-right: 5px;
+	text-align: right;
+	width: 20em;
+	font-size: 10pt;
+}

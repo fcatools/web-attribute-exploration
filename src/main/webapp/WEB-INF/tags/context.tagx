@@ -1,0 +1,45 @@
+<jsp:root version="2.1"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<jsp:directive.attribute name="context" type="de.tudresden.inf.tcs.fcaapi.Context" required="true"/>
+	<jsp:directive.attribute name="domain" type="java.lang.String" required="false"/>
+	
+	<table class="context">
+		<thead>
+			<!--+
+				|
+				| first row: attributes
+				|
+				+-->
+			<tr>
+				<td>
+					<c:if test="${not empty domain}">
+						<c:out value="${domain}"/>
+					</c:if>
+				</td>
+				<c:forEach items="${context.attributes}" var="attrib">
+					<td><c:out value="${attrib}"/></td>
+				</c:forEach>				
+			</tr>
+		</thead>
+		<c:forEach items="${context.objects}" var="object">
+			<tr>
+				<!--+ 
+				 	| first column: objects
+				 	+-->
+				<td class="first"><c:out value="${object.identifier}"/></td>
+				<!--+
+					| next columns: extents
+					+-->
+				<c:forEach items="${context.attributes}" var="attrib">
+					<td>
+						<c:if test="${object.description.attributes.contains(attrib)}">x</c:if>
+					</td>
+				</c:forEach>
+			</tr>
+		</c:forEach>				
+	</table>
+	
+</jsp:root>	
