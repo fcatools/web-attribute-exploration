@@ -3,7 +3,10 @@
 This is a small Java-based web application that performs interactive
 _attribute exploration_ using
 [FCAlib](http://code.google.com/p/fcalib/) and the
-[Bing search API](http://datamarket.azure.com/dataset/bing/search).
+[Bing search API](http://datamarket.azure.com/dataset/bing/search). Attribute
+exploration is a method based on Formal Concept Analysis -- for an
+introduction I recommend the book _Formal Concept Analysis:
+Mathematical Foundations_ by Ganter and Wille (Springer, 1999).
 
 ## Project Setup
 
