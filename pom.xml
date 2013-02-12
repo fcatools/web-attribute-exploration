@@ -1,0 +1,195 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.l3s.fca</groupId>
+	<artifactId>web-att-exp</artifactId>
+	<packaging>war</packaging>
+	<name>Web Attribute Exploration</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			
+			
+			<!-- 
+			
+			<plugin>
+				<groupId>org.simplericity.jettyconsole</groupId>
+				<artifactId>jetty-console-maven-plugin</artifactId>
+				<version>1.47</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>createconsole</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			 -->			
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<warName>ROOT</warName>
+<!--					<archive>-->
+<!--						<manifest>-->
+<!--							<addClasspath>true</addClasspath>-->
+<!--							<mainClass>de.l3s.fca.Server</mainClass>-->
+<!--						</manifest>-->
+<!--					</archive>-->
+				</configuration>
+			</plugin>
+			
+
+			
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.12</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.tudresden.inf.tcs</groupId>
+			<artifactId>fcalib</artifactId>
+			<version>0.10.2</version>
+			<scope>compile</scope>
+<!--			<scope>system</scope>-->
+<!--			<systemPath>${basedir}/lib/fcalib-0.10.2.jar</systemPath>-->
+		</dependency>
+		<dependency>
+			<groupId>de.tudresden.inf.tcs</groupId>
+			<artifactId>fcaapi</artifactId>
+			<version>0.10.2</version>
+			<scope>compile</scope>
+<!--			<scope>system</scope>-->
+<!--			<systemPath>${basedir}/lib/fcaapi-0.10.2.jar</systemPath>-->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.2.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-http</artifactId>
+			<version>8.1.4.v20120524</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>8.1.4.v20120524</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-jsp</artifactId>
+			<version>8.1.4.v20120524</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>8.1.4.v20120524</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>8.1.4.v20120524</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>3.1.1.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.3</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+
+
+<!-- SEE http://stackoverflow.com/questions/6094329/tomcat-7-and-jstl -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.0.1</version>
+		<scope>provided</scope>
+	</dependency>
+
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.glassfish.web</groupId>
+		<artifactId>jstl-impl</artifactId>
+		<version>1.2</version>
+		<exclusions>
+			<exclusion>
+				<artifactId>servlet-api</artifactId>
+				<groupId>javax.servlet</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>jsp-api</artifactId>
+				<groupId>javax.servlet.jsp</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>jstl-api</artifactId>
+				<groupId>javax.servlet.jsp.jstl</groupId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+
+
+	</dependencies>
+</project>
